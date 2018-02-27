@@ -61,7 +61,7 @@ public class FilesPrioDecorator<T> implements FilesPrio<T> {
 	}
 
 	@Override
-	public void init() {
+	public void init() throws InvariantError, PostconditionError {
 		delegates.init();
 	}
 	

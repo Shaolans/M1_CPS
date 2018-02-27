@@ -81,7 +81,7 @@ public interface FilesPrio<T> {
 	
 	//[init]
 	
-	public void init();
+	public void init() throws InvariantError, PostconditionError;
 	
 	/* post-conditions */
 	// \post getSize() == 0
@@ -96,14 +96,14 @@ public interface FilesPrio<T> {
 	
 	public void putPrio(int i, T elem) throws PreconditionError, PostconditionError, InvariantError;
 	
-	// \post getActive(i)@pre \impl getActivePrios() == getActivePrios()@pre
+	// \post isActive(i)@pre \impl getActivePrios() == getActivePrios()@pre
 	// \post !getActive(i)@pre \impl getActivePrios() == getActivePrios()@pre \\union {i}
 	// \post getSizePrio(i) == getSizePrio(i)@pre + 1
-	// \post \forall j:int \with j \in getActivePrios()@pre, j != i, getSizePrio(j) = getSizePrio(j)@pre 
-	// \post prio(num) = elem
-	// \post \forall k:int \with k \in [2..getSizePrio(i)@pre+1], getElemPrio(i,k) = getElemPrio(i,k-1)@pre
+	// \post \forall j:int \with j \in getActivePrios()@pre, j != i, getSizePrio(j) == getSizePrio(j)@pre 
+	// \post prio(i) == elem
+	// \post \forall k:int \with k \in [2..getSizePrio(i)@pre+1], getElemPrio(i,k) == getElemPrio(i,k-1)@pre
 	/* \post \forall j:int \with j \in getActivePrios()@pre, j != i, 
-	 * 	\forall k:int \with k \in [1..getSizePrio(i)@pre+1], getElemPrio(j,k) = getElemPrio(j,k)@pre
+	 * 	\forall k:int \with k \in [1..getSizePrio(j)@pre+1], getElemPrio(j,k) == getElemPrio(j,k)@pre
 	*/
 	
 	
@@ -128,7 +128,7 @@ public interface FilesPrio<T> {
 	// \post \forall j:int \with j \in getActivePrios()@pre, j != i, getSizePrio(j) = getSizePrio(j)@pre 
 	// \post \forall k:int \with k \in [1..getSizePrio(i)@pre-1], getElemPrio(i,k) = getElemPrio(i,k)@pre
 	/* \post \forall j:int \with j \in getActivePrios()@pre, j != i, 
-	 * 	\forall k:int \with k \in [1..getSizePrio(i)@pre+1], getElemPrio(j,k) = getElemPrio(j,k)@pre
+	 * 	\forall k:int \with k \in [1..getSizePrio(j)@pre+1], getElemPrio(j,k) = getElemPrio(j,k)@pre
 	*/
 	
 	

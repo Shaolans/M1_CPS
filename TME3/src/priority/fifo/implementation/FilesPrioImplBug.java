@@ -11,10 +11,10 @@ import priority.fifo.implementation.exception.PostconditionError;
 import priority.fifo.implementation.exception.PreconditionError;
 import priority.fifo.interfaces.FilesPrio;
 
-public class FilesPrioImpl<T> implements FilesPrio<T> {
+public class FilesPrioImplBug<T> implements FilesPrio<T> {
 	private Map<Integer, List<T>> filesprio;
 	
-	public FilesPrioImpl() {
+	public FilesPrioImplBug() {
 		filesprio = new HashMap<Integer, List<T>>();
 	}
 	
@@ -119,5 +119,4 @@ public class FilesPrioImpl<T> implements FilesPrio<T> {
 	public void remove() throws PreconditionError, PostconditionError, InvariantError {
 		this.removePrio(this.getMaxPrio());
 	}
-
 }

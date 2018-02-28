@@ -50,7 +50,7 @@ public interface FilesPrio<T> {
 	
 	// \pre i \in getActivePrios() \and prio>=0 \and prio<getSizePrio(i)
 	
-	public T getElemPrio(int i, int prio);
+	public T getElemPrio(int prio, int i);
 	
 	
 	/*invariants*/

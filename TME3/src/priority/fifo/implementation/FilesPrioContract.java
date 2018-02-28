@@ -24,8 +24,8 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		for(Integer i : getActivePrios())
 			size+=getSizePrio(i);
 		if(getSize()!=size)
-			throw new InvariantError("getSolde()== sum(i belongs to getActivePrios, getSizePrio(i)"
-					+ "does not hold");
+			throw new InvariantError("getSize()== sum(i belongs to getActivePrios, getSizePrio(i)"
+					+ " does not hold");
 		
 		
 		// \inv isEmpty() == (getSize() == 0)
@@ -72,8 +72,8 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		}
 		
 		/* \inv getElem() == getPrio(getMaxPrio()) */
-		if(getElem()!= getPrio(getMaxPrio()) )
-			throw new InvariantError("getElem() == getPrio(getMaxPrio()) does not hold");
+		if(getElem()!= getPrio(getMaxPrio()) ) {System.out.println(getElem()+" "+getPrio(getMaxPrio())+" "+getMaxPrio());
+			throw new InvariantError("getElem() == getPrio(getMaxPrio()) does not hold");}
 		
 		
 		/* \inv \forall i:int \with i \in getActivePrio(), getSizePrio(i) > 0 */
@@ -354,7 +354,7 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		for(int k=0 ; k<getSizePrio_atPre-1; k++){
 			if( getElemPrio(i, k)!= getElemMap_atPre.get(i).get(k)){
 				throw new PostconditionError("forall k:int with k in [0..getSizePrio(i)@pre-1], getElemPrio(i,k) == getElemPrio(i,k-1)@pre"
-						+ "does not hold");
+						+ " does not hold");
 			}
 		}
 
@@ -367,7 +367,7 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 					if(getElemPrio(j, k) != getElemMap_atPre.get(j).get(k))
 						throw new PostconditionError("forall j:int with j in getActivePrios()@pre, j != i," 
 								+"forall k:int with k in [1..getSizePrio(j)@pre], getElemPrio(j,k) == getElemPrio(j,k)@pre"
-								+ "does not hold");
+								+ " does not hold");
 				}
 			}
 		}

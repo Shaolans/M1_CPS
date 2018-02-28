@@ -18,7 +18,6 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 	
 	
 	public void checkInvariants() throws InvariantError{
-		
 		/* \inv getSize() == \sum ( i:int \with
 			i \in getActivePrios() , getSizePrio(i) ) */
 		int size=0;
@@ -32,7 +31,7 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		// \inv isEmpty() == (getSize() == 0)
 		if(isEmpty()!=(getSize()==0))
 			throw new InvariantError("isEmpty() == (getSize() == 0) does not hold");
-		
+
 		// \inv \forall i:int isActive(i) == ( i \in getActivePrios() )
 		for(int k = 0; k<10; k++){
 			Random r = new Random();
@@ -66,7 +65,7 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		
 		/* \inv \forall i:int getPrio(i) == getElemPrio(i,1) */
 		for(Integer i : getActivePrios()){
-			if(getPrio(i)!=getElemPrio(i, 1)){
+			if(getPrio(i)!=getElemPrio(i, 0)){//changement d'indice
 				throw new InvariantError("\forall i:int getPrio(i) == getElemPrio(i,1) "
 						+ "does not hold");
 			}			
@@ -92,8 +91,6 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 				throw new InvariantError("forall i:int with i not_in getActivePrio(), getSizePrio(i) == 0"
 						+ "does not hold");
 			}
-			else
-				k--;
 			
 		}
 		
@@ -109,7 +106,6 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		}
 		
 		
-		
 	}
 	
 	
@@ -118,12 +114,10 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		
 		//invariants
 		checkInvariants();
-		
 		super.init();
 		
 		//invariants
 		checkInvariants();
-		
 		
 		//postconditions
 		
@@ -153,9 +147,6 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		//invariants
 		checkInvariants();
 		
-		//appel
-		super.putPrio(i, elem);
-		
 		//captures
 		Set<Integer> getActivePrios_atPre = getActivePrios();
 		int getSizePrio_atPre = getSizePrio(i);
@@ -174,6 +165,10 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 			}
 				
 		}
+		
+		
+		//appel
+		super.putPrio(i, elem);
 		
 		//invariants
 		checkInvariants();
@@ -293,7 +288,7 @@ public class FilesPrioContract<T> extends FilesPrioDecorator<T> {
 		Map<Integer, Map<Integer, T>> getElemMap_atPre = new HashMap<>();
 		for(Integer j : getActivePrios()){
 			int k = getSizePrio(j);
-			getSizePrioMap_atPre.put(j,k );
+			getSizePrioMap_atPre.put(j,k);
 			
 			for(int l=0 ; l<k; l++){
 				if(getElemMap_atPre.get(j)==null)

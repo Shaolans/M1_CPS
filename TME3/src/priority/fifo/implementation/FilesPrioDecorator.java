@@ -56,8 +56,8 @@ public class FilesPrioDecorator<T> implements FilesPrio<T> {
 	}
 
 	@Override
-	public T getElemPrio(int i, int prio) {
-		return delegates.getElemPrio(i, prio);
+	public T getElemPrio(int prio, int i) {
+		return delegates.getElemPrio(prio, i);
 	}
 
 	@Override

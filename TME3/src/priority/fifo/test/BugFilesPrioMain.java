@@ -1,17 +1,14 @@
 package priority.fifo.test;
 
-
-
 import priority.fifo.implementation.FilesPrioContract;
-import priority.fifo.implementation.FilesPrioImpl;
+import priority.fifo.implementation.FilesPrioImplBug;
 import priority.fifo.implementation.exception.InvariantError;
 import priority.fifo.implementation.exception.PostconditionError;
 import priority.fifo.implementation.exception.PreconditionError;
 
-public class FilesPrioMain {
-
+public class BugFilesPrioMain {
 	public static void main(String[] args) {
-		FilesPrioContract<String> fpc = new FilesPrioContract<String>(new FilesPrioImpl<String>());
+		FilesPrioContract<String> fpc = new FilesPrioContract<String>(new FilesPrioImplBug<String>());
 		try {
 			fpc.init();
 			System.out.println(fpc.isEmpty());//true
@@ -32,5 +29,4 @@ public class FilesPrioMain {
 		}
 
 	}
-
 }

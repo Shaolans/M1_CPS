@@ -24,12 +24,12 @@ public class FilesPrioImplBug<T> implements FilesPrio<T> {
 		for(Map.Entry<Integer, List<T>> entry: filesprio.entrySet()) {
 			size += entry.getValue().size();
 		}
-		return size;
+		return size+1;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return filesprio.isEmpty();
+		return !filesprio.isEmpty();
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class FilesPrioImplBug<T> implements FilesPrio<T> {
 	public int getMaxPrio() {
 		int max = 0;
 		for(Integer i: filesprio.keySet()) {
-			max = Math.max(max, i);
+			max = Math.min(max, i);
 		}
 		return max;
 	}
@@ -103,7 +103,7 @@ public class FilesPrioImplBug<T> implements FilesPrio<T> {
 
 	@Override
 	public void put(T elem) throws PreconditionError, PostconditionError, InvariantError {
-		this.putPrio(this.getMaxPrio(), elem);
+		this.putPrio(0, elem);
 		
 	}
 
@@ -111,12 +111,12 @@ public class FilesPrioImplBug<T> implements FilesPrio<T> {
 	public void removePrio(int i) throws PreconditionError, PostconditionError, InvariantError {
 		List<T> lprio = filesprio.get(i);
 		if(lprio.size() <= 1) filesprio.remove(i);
-		lprio.remove(lprio.size()-1);
+		lprio.remove(1);
 		
 	}
 
 	@Override
 	public void remove() throws PreconditionError, PostconditionError, InvariantError {
-		this.removePrio(this.getMaxPrio());
+		this.removePrio(0);
 	}
 }

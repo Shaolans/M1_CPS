@@ -1,0 +1,11 @@
+package lift.test;
+
+public class AbstractLiftTest2 extends AbstractLiftTest {
+
+	@Override
+	public void beforeTests() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

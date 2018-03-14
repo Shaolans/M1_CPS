@@ -1,0 +1,17 @@
+package lift.test;
+
+import lift.contracts.CommandsContract;
+import lift.contracts.LiftContract;
+import lift.impl.CommandsImpl;
+import liftimpl3.Lift3;
+
+public class LiftTest3 extends AbstractLiftTest {
+
+	@Override
+	public void beforeTests() {
+		super.setLift(new LiftContract(new Lift3()));
+		super.setCommands(new CommandsContract(new CommandsImpl()));
+
+	}
+
+}

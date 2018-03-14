@@ -1,0 +1,35 @@
+package lift.test;
+
+import static org.junit.Assert.fail;
+import lift.contracts.PreconditionError;
+
+import org.junit.Test;
+
+public abstract class LiftTest extends AbstractLiftTest {
+	
+	@Test
+	public void initTest(){
+		
+		//precondition 
+		
+		//cas positif
+		beforeTests();
+		getLift().init(2, 5);
+		
+		
+		//cas negatif 
+		beforeTests();
+		try{
+			getLift().init(-1, 5);
+			fail();
+			
+		}
+		catch (PreconditionError e){
+		}
+	
+		
+		
+	}
+	
+
+}

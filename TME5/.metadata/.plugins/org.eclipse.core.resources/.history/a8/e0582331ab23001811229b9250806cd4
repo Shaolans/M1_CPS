@@ -1,0 +1,13 @@
+package lift.test;
+
+import liftimpl1.Lift1;
+
+public class AbstractLiftTest1 extends AbstractLiftTest {
+
+	@Override
+	public void beforeTests() {
+		Lift1 l1 = new Lift1();
+
+	}
+
+}

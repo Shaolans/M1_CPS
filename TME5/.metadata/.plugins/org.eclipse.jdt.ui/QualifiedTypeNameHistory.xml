@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="liftimpl1.Lift1"/>
+<fullyQualifiedTypeName name="lift.impl.CommandsImpl"/>
+<fullyQualifiedTypeName name="lift.contracts.CommandsContract"/>
+<fullyQualifiedTypeName name="liftimpl2.Lift2"/>
+<fullyQualifiedTypeName name="lift.test.AbstractLiftTest"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="junit.framework.Assert"/>
+<fullyQualifiedTypeName name="org.junit.internal.runners.statements.Fail"/>
+<fullyQualifiedTypeName name="lift.contracts.LiftContract"/>
+<fullyQualifiedTypeName name="lift.services.DoorStatus"/>
+<fullyQualifiedTypeName name="com.sun.org.apache.xpath.internal.axes.PredicatedNodeTest"/>
+<fullyQualifiedTypeName name="lift.contracts.PreconditionError"/>
+</qualifiedTypeNameHistroy>

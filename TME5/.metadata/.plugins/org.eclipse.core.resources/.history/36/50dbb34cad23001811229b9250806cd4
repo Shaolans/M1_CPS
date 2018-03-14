@@ -1,0 +1,17 @@
+package lift.test;
+
+import org.junit.Test;
+
+public abstract class LiftTest extends AbstractLiftTest {
+	
+	@Test
+	public void initTest(){
+		
+		//precondition 
+		
+		//cas positif
+		getLift().init(2, 5);
+		
+	}
+
+}

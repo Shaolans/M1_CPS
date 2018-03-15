@@ -66,6 +66,7 @@ public abstract class LiftTest extends AbstractLiftTest {
 				getLift().getDoorStatus() == DoorStatus.OPENED);
 	}
 	
+
 	@Test
 	public void beginMoveUpPreTest_2_1_1(){
 		
@@ -123,6 +124,7 @@ public abstract class LiftTest extends AbstractLiftTest {
 		
 	}
 	
+		
 	
 	@Test
 	public void stepMoveUpPreTest_3_1_1(){
@@ -184,6 +186,7 @@ public abstract class LiftTest extends AbstractLiftTest {
 	}
 	
 	
+	
 	@Test
 	public void endMoveUpPreTest_4_1_1(){
 		//cas positif
@@ -243,6 +246,7 @@ public abstract class LiftTest extends AbstractLiftTest {
 		assertTrue(getLift().getLiftStatus() == LiftStatus.STOP_UP &&
 				getCommands().getNbUpCommands() == nbCommand_atpre - 1);
 	}
+	
 	
 	
 	@Test
@@ -319,6 +323,32 @@ public abstract class LiftTest extends AbstractLiftTest {
 		}
 		
 		assertTrue(getLift().getLiftStatus() == LiftStatus.MOVING_DOWN);
+	}
+	
+	@Test
+	public void beginMoveDownTransitionTest_5_4_1(){
+		beforeTests();
+		getLift().init(2, 5);
+		getCommands().addUpCommand(1);
+		getLift().closeDoor();
+		getLift().doorAck();
+		getLift().beginMoveUp();
+		getLift().stepMoveUp();
+		getLift().endMoveUp();
+		getLift().openDoor();
+		getLift().doorAck();
+		getCommands().addDownCommand(2);
+		getLift().closeDoor();
+		getLift().doorAck();
+		
+		
+		//oracle
+		try{
+			getLift().beginMoveDown();
+		}catch(PreconditionError e){
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
@@ -399,6 +429,7 @@ public abstract class LiftTest extends AbstractLiftTest {
 	}
 	
 	
+	
 	@Test
 	//probleme les preconditions sont vérifiées mais les implantations ne verifie pas les post conditions
 	public void endMoveDownPreTest_7_1_1(){
@@ -452,8 +483,6 @@ public abstract class LiftTest extends AbstractLiftTest {
 		//conditions initiales
 		beforeTests();
 		getLift().init(2, 5);
-		beforeTests();
-		getLift().init(2, 5);
 		getCommands().addUpCommand(3);
 		getLift().closeDoor();
 		getLift().doorAck();
@@ -479,6 +508,7 @@ public abstract class LiftTest extends AbstractLiftTest {
 		assertTrue(getLift().getLiftStatus() == LiftStatus.STOP_DOWN &&
 				getCommands().getNbDownCommands() == nbCommands_atpre - 1);
 	}
+	
 	
 	
 	@Test
@@ -694,5 +724,81 @@ public abstract class LiftTest extends AbstractLiftTest {
 		
 		assertTrue(getCommands().getNbUpCommands() == nbCommands_atpre + 1);
 	}
+	
+	@Test
+	public void selectLevelLimiteTest_11_4_1(){
+		//cas dans bornes
+		//conditions initiales
+		beforeTests();
+		getLift().init(2, 5);
+				
+		try {
+			getLift().selectLevel(3);
+		}catch(PreconditionError e) {
+			assertTrue(false);
+		}
+		assertTrue(true);
+	}
+	
+	@Test
+	public void selectLevelLimiteTest_11_4_2(){
+		//cas hors bornes
+		//conditions initiales
+		beforeTests();
+		getLift().init(2, 5);
+				
+		try {
+			getLift().selectLevel(1);
+		}catch(PreconditionError e) {
+			assertTrue(true);
+		}
+
+	}
+	
+	@Test
+	public void selectLevelLimiteTest_11_4_3(){
+		//cas hors bornes
+		//conditions initiales
+		beforeTests();
+		getLift().init(2, 5);
+				
+		try {
+			getLift().selectLevel(6);
+		}catch(PreconditionError e) {
+			assertTrue(true);
+		}
+
+	}
+	
+	@Test
+	public void selectLevelLimiteTest_11_4_4(){
+		//cas aux bornes
+		//conditions initiales
+		beforeTests();
+		getLift().init(2, 5);
+				
+		try {
+			getLift().selectLevel(2);
+		}catch(PreconditionError e) {
+			assertTrue(true);
+		}
+
+	}
+	
+	@Test
+	public void selectLevelLimiteTest_11_4_5(){
+		//cas aux bornes
+		//conditions initiales
+		beforeTests();
+		getLift().init(2, 5);
+				
+		try {
+			getLift().selectLevel(5);
+		}catch(PreconditionError e) {
+			assertTrue(true);
+		}
+
+	}
+	
 	
 }

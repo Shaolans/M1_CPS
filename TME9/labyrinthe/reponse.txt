@@ -1,0 +1,23 @@
+Le chemin calculé obtenu (en profondeur):
+go ENTER
+go NORTH
+go NORTH
+go NORTH
+go NORTH
+go SOUTH
+go SOUTH
+go SOUTH
+go WEST
+go WEST
+go WEST
+go NORTH
+go WEST
+go EAST
+go NORTH
+go EAST
+go EAST
+go NORTH
+go WEST
+go WEST
+go WEST
+go EXIT

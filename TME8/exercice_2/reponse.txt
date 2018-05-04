@@ -1,0 +1,9 @@
+Le fichier mutex1.c résoud le problème d'exclusion mutuelle, en effet, aucune
+erreur est detecté par spin.
+Cependant le fichier mutex2.c ne résoud pas le problème d'exclusion mutuelle, en
+effet spin détecte une erreur d'assertion or l'exclusion mutuelle ici se verifie
+par une assertion. De plus, en lançant la trace ./spin -t -p mutex2.pml, nous
+pouvons observer:
+[Proc2]: entrée section critique...
+[Proc1]: entrée section critique...
+Ce qui est donc contraire à l'exclusion mutuelle.

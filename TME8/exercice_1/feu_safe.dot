@@ -1,0 +1,42 @@
+digraph p_traffic_light {
+size="8,10";
+  GT [shape=box,style=dotted,label="traffic_light"];
+  GT -> S4;
+	S4 -> S3  [color=black,style=dashed,label="color = red"];
+	S3 -> S9  [color=black,style=bold,label="observe!color,blink"];
+	S9 -> S8  [color=black,style=dashed,label="color = red"];
+	S8 -> S16  [color=black,style=bold,label="observe!color,blink"];
+	S16 -> S9  [color=black,style=solid,label="(1)"];
+	S16 -> S22  [color=black,style=solid,label="(1)"];
+	S16 -> S48  [color=black,style=solid,label="(1)"];
+	S22 -> S21  [color=black,style=dashed,label="color = green"];
+	S21 -> S29  [color=black,style=bold,label="observe!color,blink"];
+	S29 -> S22  [color=black,style=solid,label="(1)"];
+	S29 -> S35  [color=black,style=solid,label="(1)"];
+	S29 -> S48  [color=black,style=solid,label="(1)"];
+	S35 -> S34  [color=black,style=dashed,label="color = green"];
+	S34 -> S42  [color=black,style=bold,label="observe!color,blink"];
+	S42 -> S9  [color=black,style=solid,label="(1)"];
+	S42 -> S35  [color=black,style=solid,label="(1)"];
+	S42 -> S48  [color=black,style=solid,label="(1)"];
+	S48 -> S46  [color=black,style=solid,label="(1)"];
+	S46 -> S48  [color=black,style=bold,label="blink = 1"];
+}
+digraph p_observer {
+size="8,10";
+  GT [shape=box,style=dotted,label="observer"];
+  GT -> S19;
+	S19 -> S17  [color=black,style=bold,label="observe?col,blk"];
+	S17 -> S19  [color=black,style=solid,label="((col==orange))"];
+	S17 -> S19  [color=black,style=solid,label="((col==green))"];
+	S17 -> S19  [color=black,style=solid,label="((col==red))"];
+	S17 -> S19  [color=black,style=solid,label="((blk==1))"];
+}
+digraph init {
+size="8,10";
+  GT [shape=box,style=dotted,label="init"];
+  GT -> S2;
+	S2 -> S3  [color=black,style=solid,label="(run traffic_light())"];
+	S3 -> S0  [color=black,style=solid,label="-end-"];
+  S3 [color=blue,style=bold,shape=box];
+}

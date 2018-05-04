@@ -1,0 +1,44 @@
+digraph p_traffic_light {
+size="8,10";
+  GT [shape=box,style=dotted,label="traffic_light"];
+  GT -> S1;
+	S1 -> S2  [color=black,style=bold,label="color = red"];
+	S2 -> S13  [color=black,style=bold,label="blink = 0"];
+	S13 -> S5  [color=black,style=bold,label="((color==red))"];
+	S13 -> S8  [color=black,style=bold,label="((color==green))"];
+	S13 -> S11  [color=black,style=bold,label="((color==orange))"];
+	S5 -> S13  [color=black,style=bold,label="((blink==0))"];
+	S8 -> S26  [color=black,style=bold,label="((blink==0))"];
+	S26 -> S17  [color=black,style=bold,label="((color==green))"];
+	S26 -> S24  [color=black,style=bold,label="((color==orange))"];
+	S17 -> S26  [color=black,style=bold,label="((blink==0))"];
+	S24 -> S39  [color=black,style=bold,label="((blink==0))"];
+	S24 -> S46  [color=black,style=bold,label="((blink==1))"];
+	S39 -> S30  [color=black,style=bold,label="((color==red))"];
+	S39 -> S37  [color=black,style=bold,label="((color==orange))"];
+	S30 -> S13  [color=black,style=bold,label="((blink==0))"];
+	S37 -> S46  [color=black,style=bold,label="((blink==1))"];
+	S37 -> S39  [color=black,style=bold,label="((blink==0))"];
+	S46 -> S43  [color=black,style=solid,label="(1)"];
+	S43 -> S44  [color=black,style=bold,label="color = orange"];
+	S44 -> S46  [color=black,style=bold,label="blink = 1"];
+	S11 -> S46  [color=black,style=bold,label="((blink==1))"];
+}
+digraph p_observer {
+size="8,10";
+  GT [shape=box,style=dotted,label="observer"];
+  GT -> S19;
+	S19 -> S17  [color=black,style=bold,label="observe?col,blk"];
+	S17 -> S19  [color=black,style=solid,label="((col==orange))"];
+	S17 -> S19  [color=black,style=solid,label="((col==green))"];
+	S17 -> S19  [color=black,style=solid,label="((col==red))"];
+	S17 -> S19  [color=black,style=solid,label="((blk==1))"];
+}
+digraph init {
+size="8,10";
+  GT [shape=box,style=dotted,label="init"];
+  GT -> S2;
+	S2 -> S3  [color=black,style=solid,label="(run traffic_light())"];
+	S3 -> S0  [color=black,style=solid,label="-end-"];
+  S3 [color=blue,style=bold,shape=box];
+}

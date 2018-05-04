@@ -1,0 +1,53 @@
+digraph p_proc1 {
+size="8,10";
+  GT [shape=box,style=dotted,label="proc1"];
+  GT -> S28;
+	S28 -> S3  [color=black,style=solid,label="((count<repeat))"];
+	S28 -> S31  [color=black,style=solid,label="else"];
+	S3 -> S13  [color=black,style=bold,label="ask0 = 1"];
+	S13 -> S9  [color=black,style=bold,label="((ask1==1))"];
+	S13 -> S16  [color=black,style=bold,label="else"];
+	S9 -> S6  [color=black,style=bold,label="((turn!=0))"];
+	S6 -> S7  [color=black,style=bold,label="ask0 = 0"];
+	S7 -> S8  [color=black,style=bold,label="((turn!=0))"];
+	S8 -> S13  [color=black,style=bold,label="ask0 = 1"];
+	S16 -> S28  [color=black,style=solid,label="(1)"];
+	S31 -> S32  [color=black,style=solid,label="(1)"];
+	S32 -> S0  [color=black,style=solid,label="-end-"];
+  S32 [color=blue,style=bold,shape=box];
+}
+digraph p_proc2 {
+size="8,10";
+  GT [shape=box,style=dotted,label="proc2"];
+  GT -> S27;
+	S27 -> S3  [color=black,style=solid,label="((count<repeat))"];
+	S27 -> S30  [color=black,style=solid,label="else"];
+	S3 -> S13  [color=black,style=bold,label="ask1 = 1"];
+	S13 -> S9  [color=black,style=bold,label="((ask0==1))"];
+	S13 -> S16  [color=black,style=bold,label="else"];
+	S9 -> S6  [color=black,style=bold,label="((turn!=1))"];
+	S6 -> S7  [color=black,style=bold,label="ask1 = 0"];
+	S7 -> S8  [color=black,style=bold,label="((turn!=1))"];
+	S8 -> S13  [color=black,style=bold,label="ask1 = 1"];
+	S16 -> S17  [color=black,style=solid,label="printf('[Proc2]: entrée section critique... ')"];
+	S17 -> S18  [color=black,style=bold,label="cs_counter = (cs_counter+1)"];
+	S18 -> S19  [color=black,style=bold,label="assert((cs_counter==1))"];
+	S19 -> S20  [color=black,style=solid,label="msec = (1000%max_sleep)"];
+	S20 -> S21  [color=black,style=bold,label="cs_counter = (cs_counter-1)"];
+	S21 -> S22  [color=black,style=solid,label="printf('[Proc2]: sortie section critique... ')"];
+	S22 -> S23  [color=black,style=bold,label="turn = 0"];
+	S23 -> S24  [color=black,style=bold,label="ask1 = 0"];
+	S24 -> S27  [color=black,style=solid,label="count = (count+1)"];
+	S30 -> S31  [color=black,style=solid,label="(1)"];
+	S31 -> S0  [color=black,style=solid,label="-end-"];
+  S31 [color=blue,style=bold,shape=box];
+}
+digraph init {
+size="8,10";
+  GT [shape=box,style=dotted,label="init"];
+  GT -> S3;
+	S3 -> S2  [color=black,style=dashed,label="(run proc1(10,100))"];
+	S2 -> S4  [color=black,style=bold,label="(run proc2(10,100))"];
+	S4 -> S0  [color=black,style=solid,label="-end-"];
+  S4 [color=blue,style=bold,shape=box];
+}

@@ -1,0 +1,27 @@
+digraph p_traffic_light {
+size="8,10";
+  GT [shape=box,style=dotted,label="traffic_light"];
+  GT -> S1;
+	S1 -> S2  [color=black,style=bold,label="color = red"];
+	S2 -> S10  [color=black,style=bold,label="blink = 0"];
+	S10 -> S10  [color=black,style=bold,label="((color==red))"];
+	S10 -> S19  [color=black,style=bold,label="((color==green))"];
+	S10 -> S35  [color=black,style=bold,label="((color==orange))"];
+	S19 -> S19  [color=black,style=bold,label="((color==green))"];
+	S19 -> S28  [color=black,style=bold,label="((color==orange))"];
+	S19 -> S35  [color=black,style=bold,label="((color==orange))"];
+	S28 -> S10  [color=black,style=bold,label="((color==red))"];
+	S28 -> S35  [color=black,style=bold,label="((color==orange))"];
+	S28 -> S28  [color=black,style=bold,label="((color==orange))"];
+	S35 -> S32  [color=black,style=solid,label="(1)"];
+	S32 -> S33  [color=black,style=bold,label="color = orange"];
+	S33 -> S35  [color=black,style=bold,label="blink = 1"];
+}
+digraph init {
+size="8,10";
+  GT [shape=box,style=dotted,label="init"];
+  GT -> S2;
+	S2 -> S3  [color=black,style=solid,label="(run traffic_light())"];
+	S3 -> S0  [color=black,style=solid,label="-end-"];
+  S3 [color=blue,style=bold,shape=box];
+}
